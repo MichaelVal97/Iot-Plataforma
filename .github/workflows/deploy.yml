@@ -4,6 +4,12 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      apply_terraform:
+        description: Apply the Terraform plan to production
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -62,7 +68,7 @@ jobs:
 
   plan:
     name: Terraform plan
-    if: github.event_name != 'pull_request' && vars.TERRAFORM_PLAN_ENABLED == 'true'
+    if: github.event_name != 'pull_request'
     needs: [python, terraform]
     runs-on: ubuntu-latest
     permissions:
@@ -115,14 +121,12 @@ jobs:
           retention-days: 1
 
   deploy:
-    name: Apply Terraform plan
-    if: >-
-      github.event_name == 'push' &&
-      github.ref_name == github.event.repository.default_branch &&
-      vars.TERRAFORM_APPLY_ENABLED == 'true'
+    name: Terraform apply gate
+    if: always() && needs.python.result == 'success' && needs.terraform.result == 'success'
     needs: [python, terraform, plan]
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: ${{ github.event_name == 'workflow_dispatch' && inputs.apply_terraform && github.ref_name == github.event.repository.default_branch && 'production' || 'ci' }}
     permissions:
       contents: read
       id-token: write
@@ -141,7 +145,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Keep apply manual
+        if: >-
+          github.event_name != 'workflow_dispatch' ||
+          github.ref_name != github.event.repository.default_branch ||
+          !inputs.apply_terraform ||
+          needs.plan.result != 'success'
+        run: echo "No apply requested. To apply, run this workflow manually on the default branch and enable apply_terraform."
+
       - name: Configure AWS credentials with OIDC
+        if: >-
+          github.event_name == 'workflow_dispatch' &&
+          github.ref_name == github.event.repository.default_branch &&
+          inputs.apply_terraform &&
+          needs.plan.result == 'success'
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
@@ -154,6 +171,11 @@ jobs:
           terraform_version: 1.16.2
 
       - name: Initialize remote state
+        if: >-
+          github.event_name == 'workflow_dispatch' &&
+          github.ref_name == github.event.repository.default_branch &&
+          inputs.apply_terraform &&
+          needs.plan.result == 'success'
         run: >-
           terraform init -input=false
           -backend-config="bucket=$TF_STATE_BUCKET"
@@ -163,10 +185,20 @@ jobs:
           -backend-config="use_lockfile=true"
 
       - name: Download plan artifact
+        if: >-
+          github.event_name == 'workflow_dispatch' &&
+          github.ref_name == github.event.repository.default_branch &&
+          inputs.apply_terraform &&
+          needs.plan.result == 'success'
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan-${{ github.sha }}
           path: terraform
 
       - name: Apply plan
+        if: >-
+          github.event_name == 'workflow_dispatch' &&
+          github.ref_name == github.event.repository.default_branch &&
+          inputs.apply_terraform &&
+          needs.plan.result == 'success'
         run: terraform apply -input=false -auto-approve tfplan
