@@ -1,0 +1,186 @@
+{
+  "database": "iot_platform",
+  "mode": "catalogo del esquema de referencia; no requiere acceso a MongoDB",
+  "collections": [
+    {
+      "name": "sensor_readings",
+      "description": "Lecturas temporales generadas por sensores IoT.",
+      "fields": [
+        {
+          "name": "_id",
+          "type": "ObjectId",
+          "required": true,
+          "description": "Identificador generado por MongoDB."
+        },
+        {
+          "name": "sensor_id",
+          "type": "string",
+          "required": true,
+          "description": "Identificador del sensor que produjo la lectura."
+        },
+        {
+          "name": "timestamp",
+          "type": "datetime",
+          "required": true,
+          "description": "Fecha y hora de la lectura."
+        },
+        {
+          "name": "tipo_sensor",
+          "type": "string",
+          "required": true,
+          "description": "Tipo de sensor, por ejemplo weather o temperature."
+        },
+        {
+          "name": "temperatura",
+          "type": "number",
+          "required": true,
+          "description": "Temperatura en grados Celsius."
+        },
+        {
+          "name": "humedad",
+          "type": "number",
+          "required": true,
+          "description": "Humedad relativa en porcentaje."
+        },
+        {
+          "name": "presion",
+          "type": "number",
+          "required": true,
+          "description": "Presión atmosférica en hPa."
+        },
+        {
+          "name": "calidad_aire",
+          "type": "integer",
+          "required": true,
+          "description": "Índice de calidad del aire (AQI)."
+        },
+        {
+          "name": "energia",
+          "type": "number",
+          "required": true,
+          "description": "Lectura de energía en kW."
+        },
+        {
+          "name": "estado",
+          "type": "string",
+          "required": true,
+          "description": "Estado: normal, warning, error o maintenance."
+        },
+        {
+          "name": "ubicacion.lat",
+          "type": "number",
+          "required": true,
+          "description": "Latitud geográfica."
+        },
+        {
+          "name": "ubicacion.lon",
+          "type": "number",
+          "required": true,
+          "description": "Longitud geográfica."
+        },
+        {
+          "name": "datos_adicionales.velocidad_viento",
+          "type": "number",
+          "required": true,
+          "description": "Velocidad del viento simulada."
+        },
+        {
+          "name": "datos_adicionales.radiacion_solar",
+          "type": "number",
+          "required": true,
+          "description": "Radiación solar simulada."
+        },
+        {
+          "name": "datos_adicionales.precipitacion",
+          "type": "number",
+          "required": true,
+          "description": "Precipitación simulada."
+        },
+        {
+          "name": "confiabilidad",
+          "type": "number",
+          "required": true,
+          "description": "Confiabilidad estimada de la lectura, entre 0.8 y 1.0."
+        }
+      ]
+    },
+    {
+      "name": "sensors",
+      "description": "Metadatos de los sensores registrados en la plataforma.",
+      "fields": [
+        {
+          "name": "_id",
+          "type": "ObjectId",
+          "required": true,
+          "description": "Identificador generado por MongoDB."
+        },
+        {
+          "name": "sensor_id",
+          "type": "string",
+          "required": true,
+          "description": "Identificador único del sensor."
+        },
+        {
+          "name": "tipo_sensor",
+          "type": "string",
+          "required": true,
+          "description": "Categoría del sensor."
+        },
+        {
+          "name": "ubicacion.lat",
+          "type": "number",
+          "required": true,
+          "description": "Latitud geográfica."
+        },
+        {
+          "name": "ubicacion.lon",
+          "type": "number",
+          "required": true,
+          "description": "Longitud geográfica."
+        },
+        {
+          "name": "ubicacion.ciudad",
+          "type": "string",
+          "required": true,
+          "description": "Ciudad de instalación."
+        },
+        {
+          "name": "ubicacion.pais",
+          "type": "string",
+          "required": true,
+          "description": "País de instalación."
+        },
+        {
+          "name": "estado",
+          "type": "string",
+          "required": true,
+          "description": "Estado operativo del sensor; inicialmente activo."
+        },
+        {
+          "name": "fecha_instalacion",
+          "type": "datetime",
+          "required": true,
+          "description": "Fecha de instalación."
+        },
+        {
+          "name": "fabricante",
+          "type": "string",
+          "required": true,
+          "description": "Fabricante del sensor."
+        },
+        {
+          "name": "modelo",
+          "type": "string",
+          "required": true,
+          "description": "Modelo del sensor."
+        },
+        {
+          "name": "ultima_calibracion",
+          "type": "datetime",
+          "required": true,
+          "description": "Fecha de la última calibración."
+        }
+      ]
+    }
+  ]
+}

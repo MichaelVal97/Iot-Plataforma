@@ -1,0 +1,76 @@
+# Archivo de ejemplo para valores de Terraform
+# RENOMBRA A: terraform.tfvars
+# Y CONFIGURA LOS VALORES SEGÚN TU ENTORNO
+
+# Perfil AWS a usar (debe estar configurado en ~/.aws/credentials)
+# aws_profile = "default"
+
+# Región primaria
+# aws_primary_region = "us-east-1"
+
+# Región secundaria para Disaster Recovery
+# aws_dr_region = "us-west-2"
+
+# Nombre del proyecto
+# project_name = "iot-platform"
+
+# Ambiente
+# environment = "dev"
+
+# ============================================================================
+# OPCIONES DE RECURSOS (comentar/descomentar según necesidad)
+# ============================================================================
+
+# Crear bucket S3 para backups (requiere costos)
+# create_s3_backup_bucket = false
+
+# Crear tabla DynamoDB para rastreo de backups (requiere costos)
+# create_dynamodb_backup = false
+
+# Crear roles IAM para acceso a MongoDB (gratuito)
+# create_iam_roles = false
+
+# Habilitar CloudWatch para monitoreo (requiere costos)
+# enable_cloudwatch_monitoring = false
+
+# ============================================================================
+# CONFIGURACIÓN DE DISASTER RECOVERY
+# ============================================================================
+
+# Días de retención de backups
+# backup_retention_days = 7
+
+# Objetivo de Punto de Recuperación (RPO) en minutos
+# rpo_minutes = 60
+
+# Objetivo de Tiempo de Recuperación (RTO) en minutos
+# rto_minutes = 15
+
+# ============================================================================
+# TAGS ADICIONALES
+# ============================================================================
+
+# tags = {
+#   Owner       = "tu-nombre"
+#   CostCenter  = "codigo-centro-costo"
+#   Department  = "IT"
+#   Application = "IoT Platform"
+# }
+
+# ============================================================================
+# NOTAS IMPORTANTES
+# ============================================================================
+# 
+# 1. NO COMITES ESTE ARCHIVO CON DATOS SENSIBLES
+# 2. USA VARIABLES DE ENTORNO PARA CREDENCIALES
+# 3. EL ARCHIVO ESTÁ EN .gitignore
+# 4. ANTES DE USAR:
+#    - Renombra a terraform.tfvars
+#    - Configura tus valores
+#    - Ejecuta: terraform plan (NUNCA sin revisar primero)
+# 5. COSTO ESTIMADO:
+#    - S3 Bucket: ~$0.023/GB/mes
+#    - DynamoDB: ~$1.25/millón de escrituras (PAY_PER_REQUEST)
+#    - CloudWatch: ~$0.50/millón de logs + alarmas
+# 6. MONGODB ATLAS TIENE SUS PROPIOS COSTOS (verificar plan)
+#

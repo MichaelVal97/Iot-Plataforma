@@ -1,0 +1,8 @@
+Comando: .\.venv\Scripts\python.exe scripts/etl_mongodb_bigquery.py --batch-size 1000
+Fecha del log: 2026-10-21
+Código de salida: 0
+
+2026-10-21 18:58:43,041 WARNING No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
+2026-10-21 18:58:51,529 INFO iot-warehouse-512323.iot_warehouse.dim_sensors: 10 filas cargadas
+2026-10-21 18:59:46,166 INFO iot-warehouse-512323.iot_warehouse.fact_readings: 1000 filas cargadas
+2026-10-21 18:59:46,166 INFO Carga completa: 10 sensores y 1000 lecturas en iot-warehouse-512323.iot_warehouse

@@ -1,0 +1,8 @@
+PROYECCIÓN SIMULADA DE ESCALAMIENTO IoT
+Modo: simulación local; no consulta ni modifica MongoDB.
+Tamaño base de referencia: 50.00 GB (valor indicado en la matriz).
+Objetivo: 50.00 GB
+Progreso de referencia: 100.00%
+Faltante estimado: 0.00 GB
+Factor de escala estimado: 1.00x
+Estado: OBJETIVO CUMPLIDO; esta proyección no representa datos almacenados.

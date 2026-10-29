@@ -1,0 +1,22 @@
+{
+  "mode": "simulación; métricas de referencia, no lectura real de MongoDB",
+  "reading_count": 130000,
+  "sensor_count": 1000,
+  "data_size_bytes": 429496729,
+  "readings_size_bytes": 429496729,
+  "readings_index_size": 64424509,
+  "avg_temp": 24.3,
+  "avg_humidity": 60.1,
+  "min_temp": 14.2,
+  "max_temp": 32.8,
+  "min_humidity": 38.4,
+  "max_humidity": 86.1,
+  "states": {
+    "normal": 80,
+    "warning": 15,
+    "error": 4,
+    "maintenance": 1
+  },
+  "active_sensors": 950,
+  "inactive_sensors": 50
+}

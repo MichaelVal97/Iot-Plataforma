@@ -1,0 +1,6 @@
+VERIFICACIÓN DE TAMAÑO DE DATOS
+Objetivo: 50 GB
+Datos actuales: 0.00 GB
+Índices: 0.00 GB
+Total: 0.00 GB
+Estado: OBJETIVO PENDIENTE

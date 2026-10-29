@@ -1,0 +1,7 @@
+SIMULACION LOCAL DE DISASTER RECOVERY
+Resultado: PASS
+Registros replicados: 1
+Checksum coincidente: True
+Registros perdidos (RPO simulado): 0
+RTO local medido: 0.517 ms
+No valida replicacion real, backups, red ni disponibilidad de nube.

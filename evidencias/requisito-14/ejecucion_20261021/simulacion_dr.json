@@ -1,0 +1,13 @@
+{
+  "mode": "SIMULACION LOCAL; no usa AWS ni MongoDB Atlas",
+  "primary_region_model": "us-east-1 (directorio local temporal)",
+  "dr_region_model": "us-west-2 (directorio local temporal)",
+  "replicated_record_count": 1,
+  "checksum_matches": true,
+  "failover_recovered_record": true,
+  "rpo_lost_records": 0,
+  "replication_time_ms": 2.945,
+  "simulated_rto_ms": 0.216,
+  "result": "PASS",
+  "limitations": "No valida replicacion real, backups, red ni disponibilidad de nube."
+}

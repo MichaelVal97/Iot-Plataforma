@@ -1,0 +1,8 @@
+﻿Terraform v1.16.2
+Provider: hashicorp/aws 5.100.0
+Command: terraform init -backend=false
+Command: terraform validate
+Backend: disabled; no AWS resources created
+
+Success! The configuration is valid.
+

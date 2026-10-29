@@ -1,0 +1,19 @@
+{
+  "reading_count": 1000,
+  "sensor_count": 10,
+  "data_size_bytes": 372417,
+  "readings_size_bytes": 369457,
+  "readings_index_size": 344064,
+  "avg_temp": 25.079439999999998,
+  "avg_humidity": 60.93554,
+  "min_temp": 15.01,
+  "max_temp": 34.94,
+  "min_humidity": 30.06,
+  "max_humidity": 89.96,
+  "states": {
+    "normal": 243,
+    "maintenance": 271,
+    "warning": 243,
+    "error": 243
+  },
+  "last_timestamp": 
